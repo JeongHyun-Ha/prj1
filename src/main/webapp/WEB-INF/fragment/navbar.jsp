@@ -15,6 +15,12 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/add">글쓰기</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/member/signup">회원가입</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/member/list">회원 목록</a>
+                </li>
             </ul>
         </div>
     </div>
