@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
           integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <title>게시물 작성</title>
+    <title>게시물 수정</title>
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
@@ -16,8 +16,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-4">
-            <h3>새 게시물 작성</h3>
-            <form action="/add" method="post">
+            <h3>게시물 수정</h3>
+            <form action="/update" method="post">
+                <input type="hidden" name="id" value="${board.id}">
                 <div class="mb-3">
                     <label for="inputTitle" class="form-label">제목</label>
                     <input class="form-control" id="inputTitle" type="text" name="title" required>
@@ -32,11 +33,12 @@
                     <input class="form-control" id="inputWriter" type="text" name="writer" required>
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-success">저장</button>
+                    <button class="btn btn-success">수정</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 </body>
 </html>

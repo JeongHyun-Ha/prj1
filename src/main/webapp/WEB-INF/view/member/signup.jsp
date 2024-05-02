@@ -3,10 +3,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>회원가입</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
           integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <title>게시물 작성</title>
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
@@ -15,24 +15,23 @@
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-4">
-            <h3>새 게시물 작성</h3>
-            <form action="/add" method="post">
+        <div class="col-6">
+            <h3 class="mb-4">회원 가입</h3>
+            <form action="/member/signup" method="post">
                 <div class="mb-3">
-                    <label for="inputTitle" class="form-label">제목</label>
-                    <input class="form-control" id="inputTitle" type="text" name="title" required>
+                    <label for="inputEmail" class="form-label">이메일</label>
+                    <input name="email" type="text" id="inputEmail" class="form-control" required>
                 </div>
                 <div class="mb-3">
-                    <label for="inputContent" class="form-label">본문</label>
-                    <textarea class="form-control" id="inputContent" name="content" cols="30" rows="10"
-                              required></textarea>
+                    <label for="inputPwd" class="form-label">패스워드</label>
+                    <input name="password" type="text" id="inputPwd" class="form-control" required>
                 </div>
                 <div class="mb-3">
-                    <label for="inputWriter" class="form-label">작성자</label>
-                    <input class="form-control" id="inputWriter" type="text" name="writer" required>
+                    <label for="inputNick" class="form-label">닉네임</label>
+                    <input name="nickName" type="text" id="inputNick" class="form-control" required>
                 </div>
-                <div class="mb-3">
-                    <button class="btn btn-success">저장</button>
+                <div>
+                    <button class="btn btn-primary">회원 가입</button>
                 </div>
             </form>
         </div>

@@ -21,12 +21,12 @@ public class BoardController {
     private final BoardService service;
 
     @GetMapping("/add")
-    public String boardForm() {
+    public String addForm() {
         return "board/add";
     }
 
     @PostMapping("/add")
-    public String addBoardForm(@ModelAttribute Board board, RedirectAttributes rttr) {
+    public String add(@ModelAttribute Board board, RedirectAttributes rttr) {
         log.info("Board={}", board);
 
         service.add(board);
@@ -35,7 +35,7 @@ public class BoardController {
     }
 
     @GetMapping("/board")
-    public String viewBoard(Integer id, Model model) {
+    public String view(Integer id, Model model) {
         Board board = service.getBoard(id);
         model.addAttribute("board", board);
         log.info("board={}", board);
@@ -46,8 +46,29 @@ public class BoardController {
     public String home(Model model) {
         List<Board> list = service.list();
         model.addAttribute("boardList", list);
-        log.info("boardList={}", list);
         return "board/home";
+    }
+
+    @PostMapping("/delete")
+    public String delete(Integer id, RedirectAttributes rttr) {
+        int row = service.delete(id);
+        rttr.addFlashAttribute("delete", row);
+        rttr.addFlashAttribute("deleteId", id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/update")
+    public String updateForm(Integer id, Model model) {
+        model.addAttribute("board", service.getBoard(id));
+
+        return "board/update";
+    }
+
+    @PostMapping("/update")
+    public String update(Board board, RedirectAttributes rttr) {
+        service.update(board);
+        rttr.addAttribute("id", board.getId());
+        return "redirect:/board";
     }
 }
 

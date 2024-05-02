@@ -2,6 +2,7 @@ CREATE DATABASE prj1;
 
 USE prj1;
 
+# 게시판 테이블
 DROP TABLE board;
 CREATE TABLE board
 (
@@ -13,3 +14,15 @@ CREATE TABLE board
 );
 SELECT *
 FROM board;
+
+# 회원 테이블
+CREATE TABLE member
+(
+    id        INT PRIMARY KEY AUTO_INCREMENT,
+    email     VARCHAR(200) NOT NULL UNIQUE,
+    password  VARCHAR(200) NOT NULL,
+    nick_name VARCHAR(100) NOT NULL UNIQUE
+);
+desc member;
+SELECT *
+FROM member;
