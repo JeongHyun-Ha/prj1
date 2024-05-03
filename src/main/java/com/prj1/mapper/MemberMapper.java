@@ -23,4 +23,18 @@ public interface MemberMapper {
 
     @Delete("DELETE FROM member WHERE id = #{id}")
     int deleteById(Integer id);
+
+    @Update("""
+            UPDATE member
+            SET password = #{password},
+                nick_name = #{nickName}
+            WHERE id = #{id}
+            """)
+    int update(Member member);
+
+    @Select("""
+            SELECT * FROM member
+            WHERE email = #{email}
+            """)
+    Member selectByEmail(String email);
 }

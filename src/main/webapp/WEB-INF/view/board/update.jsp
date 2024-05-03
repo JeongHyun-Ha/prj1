@@ -21,16 +21,13 @@
                 <input type="hidden" name="id" value="${board.id}">
                 <div class="mb-3">
                     <label for="inputTitle" class="form-label">제목</label>
-                    <input class="form-control" id="inputTitle" type="text" name="title" required>
+                    <input class="form-control" id="inputTitle" type="text" name="title" value="${board.title}"
+                           required>
                 </div>
                 <div class="mb-3">
                     <label for="inputContent" class="form-label">본문</label>
                     <textarea class="form-control" id="inputContent" name="content" cols="30" rows="10"
-                              required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="inputWriter" class="form-label">작성자</label>
-                    <input class="form-control" id="inputWriter" type="text" name="writer" required>
+                              required>${board.content}</textarea>
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-success">수정</button>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,13 +37,18 @@
                 <label for="inputInserted" class="form-label">작성 일시</label>
                 <input class="form-control" id="inputInserted" type="datetime-local" readonly value="${board.inserted}">
             </div>
-            <div>
-                <form id="deleteBtn" action="/delete" method="post" onsubmit="return confirm('삭제 하시겠습니까?')">
-                    <input type="hidden" name="id" value="${board.id}">
-                </form>
-                <button form="deleteBtn" class="btn btn-danger">삭제</button>
-                <a href="/update?id=${board.id}" class="btn btn-success">수정</a>
-            </div>
+            <sec:authorize access="isAuthenticated()">
+                <sec:authentication property="principal.member" var="member"/>
+                <c:if test="${member.id eq board.memberId}">
+                    <div>
+                        <form id="deleteBtn" action="/delete" method="post" onsubmit="return confirm('삭제 하시겠습니까?')">
+                            <input type="hidden" name="id" value="${board.id}">
+                        </form>
+                        <button form="deleteBtn" class="btn btn-danger">삭제</button>
+                        <a href="/update?id=${board.id}" class="btn btn-success">수정</a>
+                    </div>
+                </c:if>
+            </sec:authorize>
         </div>
     </div>
 </div>

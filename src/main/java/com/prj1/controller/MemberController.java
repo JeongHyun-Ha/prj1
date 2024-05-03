@@ -6,10 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -48,5 +46,31 @@ public class MemberController {
         log.info("id={}, deleted={}", id, deleted);
         model.addAttribute("deleteMember", deleted);
         return "redirect:/member/list";
+    }
+
+    @GetMapping("/update")
+    public String updateForm(Integer id, Model model) {
+        model.addAttribute("member", service.get(id));
+        return "member/update";
+    }
+
+    @PostMapping("/update")
+    public String update(Member member, RedirectAttributes rttr) {
+        int updated = service.update(member);
+
+        rttr.addAttribute("id", member.getId());
+        rttr.addFlashAttribute("updated", updated);
+        return "redirect:/member";
+    }
+
+    @ResponseBody
+    @GetMapping("/email")
+    public String emailCheck(String email) {
+        return service.emailCheck(email);
+    }
+    
+    @GetMapping("/login")
+    public String loginForm() {
+        return "member/login";
     }
 }

@@ -30,3 +30,18 @@ ALTER TABLE member
 desc member;
 SELECT *
 FROM member;
+
+# 게시물 갯수 늘리기
+INSERT INTO board
+    (title, content, writer)
+SELECT title, content, writer
+FROM board;
+
+ALTER TABLE board
+    DROP COLUMN writer;
+ALTER TABLE board
+    ADD COLUMN member_id INT REFERENCES member (id);
+
+UPDATE board
+SET member_id = 19
+WHERE id > 0;

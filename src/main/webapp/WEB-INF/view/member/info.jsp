@@ -17,6 +17,9 @@
     <div class="row justify-content-center">
         <div class="col-6">
             <h3 class="mb-4">회원 정보</h3>
+            <c:if test="${not empty updated}">
+                회원 정보가 저장되었습니다.
+            </c:if>
             <div>
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">이메일</label>
@@ -36,6 +39,7 @@
                 </div>
                 <div>
                     <button class="btn btn-danger" form="formDelete">회원 탈퇴</button>
+                    <a href="/member/update?id=${member.id}" class="btn btn-secondary">개인정보 수정</a>
                 </div>
             </div>
         </div>
